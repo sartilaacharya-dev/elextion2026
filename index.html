@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4ec">
+  <meta name="description" content="Learn why your vote matters in the 2026 U.S. elections and find official resources to make a plan to vote.">
+  <title>Your Voice, Your Vote — 2026 Elections</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #202b42;
+      --muted: #5f6a7d;
+      --paper: #f7f4ec;
+      --white: #fffefa;
+      --blue: #4358d8;
+      --blue-dark: #3044bc;
+      --coral: #f1755e;
+      --yellow: #f6c953;
+      --mint: #a9d8c5;
+      --line: #e8e3d8;
+      --radius: 22px;
+      --shadow: 0 18px 50px rgba(32, 43, 66, .09);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 78px;
+      border-bottom: 1px solid rgba(32, 43, 66, .08);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      text-decoration: none;
+    }
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--blue);
+      color: white;
+      font-size: 19px;
+    }
+    .nav { display: flex; align-items: center; gap: 30px; }
+    .nav a {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .nav a:hover { color: var(--blue); }
+    .nav .nav-cta {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      align-items: center;
+      gap: 55px;
+      min-height: 590px;
+      padding-block: 72px 78px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 20px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      width: 21px;
+      height: 2px;
+      background: var(--coral);
+      content: "";
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 600px;
+      margin-bottom: 22px;
+      font-size: clamp(52px, 7vw, 82px);
+      font-weight: 800;
+      letter-spacing: -.075em;
+      line-height: .99;
+    }
+    h1 span { color: var(--blue); }
+    .hero-copy {
+      max-width: 490px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--blue);
+      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .18s ease, background .18s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: var(--blue-dark); }
+    .button-secondary { border-color: var(--line); background: transparent; color: var(--ink); }
+    .button-secondary:hover { background: var(--white); color: var(--ink); }
+    .arrow { font-size: 17px; line-height: 1; }
+
+    .hero-art {
+      position: relative;
+      display: grid;
+      min-height: 400px;
+      place-items: center;
+      isolation: isolate;
+    }
+    .blob {
+      position: absolute;
+      z-index: -1;
+      width: min(100%, 410px);
+      aspect-ratio: 1;
+      border-radius: 48% 52% 57% 43% / 45% 42% 58% 55%;
+      background: #e3e5ff;
+      transform: rotate(-8deg);
+    }
+    .sun {
+      position: absolute;
+      top: 18px;
+      right: 34px;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: var(--yellow);
+    }
+    .spark {
+      position: absolute;
+      top: 78px;
+      left: 20px;
+      color: var(--coral);
+      font-size: 44px;
+      transform: rotate(-12deg);
+    }
+    .ballot {
+      position: relative;
+      width: min(310px, 77%);
+      padding: 29px 27px 24px;
+      border: 1px solid rgba(32, 43, 66, .07);
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: 0 23px 55px rgba(41, 48, 95, .15);
+      transform: rotate(3deg);
+    }
+    .ballot-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 21px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .ballot-head span:last-child { color: var(--blue); }
+    .ballot-row { display: flex; align-items: center; gap: 12px; margin: 15px 0; }
+    .check {
+      display: grid;
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
+      place-items: center;
+      border: 1.5px solid #c9cfdb;
+      border-radius: 6px;
+      color: white;
+      font-size: 15px;
+    }
+    .check.checked { border-color: var(--blue); background: var(--blue); }
+    .ballot-line { display: grid; flex: 1; gap: 6px; }
+    .ballot-line b { font-size: 12px; }
+    .ballot-line i { width: 70%; height: 5px; border-radius: 9px; background: #eeedf1; }
+    .ballot-line i.short { width: 44%; }
+    .ballot-stamp {
+      margin-top: 22px;
+      padding: 10px;
+      border: 2px dashed #d9dcf5;
+      border-radius: 9px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .date-tag {
+      position: absolute;
+      right: -2px;
+      bottom: 40px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: var(--coral);
+      box-shadow: 0 12px 30px rgba(241, 117, 94, .25);
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.35;
+      transform: rotate(-5deg);
+    }
+    .date-tag strong { display: block; font-size: 17px; }
+
+    .date-band {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 23px 30px;
+      border-radius: var(--radius);
+      background: var(--ink);
+      color: white;
+    }
+    .date-band-label { color: #c9d0e2; font-size: 12px; font-weight: 700; }
+    .date-band-date { margin: 0; font-size: 19px; font-weight: 800; letter-spacing: -.03em; }
+    .date-band-note { max-width: 430px; margin: 0; color: #c9d0e2; font-size: 12px; }
+    .date-band .date-icon { color: var(--yellow); font-size: 29px; }
+
+    .section { padding-block: 100px; }
+    .section-heading { max-width: 620px; margin-bottom: 38px; }
+    .section-heading h2 {
+      margin-bottom: 12px;
+      font-size: clamp(34px, 5vw, 49px);
+      font-weight: 800;
+      letter-spacing: -.06em;
+      line-height: 1.08;
+    }
+    .section-heading p { margin-bottom: 0; color: var(--muted); }
+    .reasons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .reason {
+      min-height: 230px;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+    .reason-icon {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 23px;
+      place-items: center;
+      border-radius: 14px;
+      background: #e7e9ff;
+      font-size: 22px;
+    }
+    .reason:nth-child(2) .reason-icon { background: #ffe5dc; }
+    .reason:nth-child(3) .reason-icon { background: #fff0c7; }
+    .reason h3 { margin-bottom: 9px; font-size: 17px; letter-spacing: -.03em; }
+    .reason p { margin-bottom: 0; color: var(--muted); font-size: 13px; }
+
+    .plan-section { padding-block: 0 95px; }
+    .plan {
+      display: grid;
+      grid-template-columns: .82fr 1.18fr;
+      gap: 50px;
+      padding: 48px;
+      border-radius: 30px;
+      background: var(--mint);
+    }
+    .plan-intro .eyebrow { color: #275c4a; }
+    .plan-intro h2 {
+      margin-bottom: 15px;
+      font-size: clamp(34px, 4vw, 46px);
+      font-weight: 800;
+      letter-spacing: -.065em;
+      line-height: 1.04;
+    }
+    .plan-intro p:last-child { margin: 0; color: #365a4e; font-size: 14px; }
+    .steps { display: grid; gap: 10px; }
+    .step {
+      display: grid;
+      grid-template-columns: 39px 1fr;
+      align-items: start;
+      gap: 13px;
+      padding: 16px;
+      border: 1px solid rgba(32, 43, 66, .09);
+      border-radius: 15px;
+      background: rgba(255, 254, 250, .8);
+    }
+    .step-number {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--ink);
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .step h3 { margin: 1px 0 4px; font-size: 14px; }
+    .step p { margin: 0; color: var(--muted); font-size: 12px; }
+    .step a { color: var(--blue-dark); font-weight: 700; text-underline-offset: 3px; }
+
+    .bottom-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 70px;
+      padding: 33px 38px;
+      border-radius: var(--radius);
+      background: #e7e9ff;
+    }
+    .bottom-cta h2 { margin-bottom: 5px; font-size: 22px; letter-spacing: -.04em; }
+    .bottom-cta p { margin: 0; color: var(--muted); font-size: 13px; }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 22px 28px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+    footer p { max-width: 720px; margin: 0; }
+    footer a { color: var(--blue-dark); font-weight: 700; text-underline-offset: 3px; }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 36px, 560px); }
+      .topbar { min-height: 68px; }
+      .nav { gap: 15px; }
+      .nav a { font-size: 12px; }
+      .nav a:nth-child(1), .nav a:nth-child(2) { display: none; }
+      .nav .nav-cta { padding: 9px 13px; }
+      .hero { grid-template-columns: 1fr; gap: 10px; padding-block: 62px 42px; }
+      .hero-art { min-height: 350px; }
+      .blob { width: min(90%, 350px); }
+      .date-band { align-items: flex-start; padding: 21px; }
+      .date-band-note { display: none; }
+      .date-band-date { font-size: 16px; }
+      .section { padding-block: 75px; }
+      .reasons { grid-template-columns: 1fr; }
+      .reason { min-height: auto; }
+      .reason-icon { margin-bottom: 15px; }
+      .plan { grid-template-columns: 1fr; gap: 27px; padding: 28px 20px; }
+      .bottom-cta { align-items: flex-start; flex-direction: column; padding: 26px 22px; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap topbar">
+    <a class="brand" href="#" aria-label="Your Voice, Your Vote home">
+      <span class="brand-mark" aria-hidden="true">✓</span>
+      <span>Your Voice, Your Vote</span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#why-vote">Why vote</a>
+      <a href="#make-a-plan">Make a plan</a>
+      <a class="nav-cta" href="https://www.vote.gov/" target="_blank" rel="noopener noreferrer">Get ready to vote <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">The 2026 U.S. elections</p>
+        <h1 id="hero-title">Your voice.<br>Your <span>future.</span></h1>
+        <p class="hero-copy">Voting is one way to help shape the decisions that affect your community and your life. Make a plan, get informed, and make your voice count.</p>
+        <div class="actions">
+          <a class="button" href="#make-a-plan">Make your voting plan <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="button button-secondary" href="#why-vote">Why it matters</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a completed ballot" role="img">
+        <div class="blob"></div>
+        <div class="sun"></div>
+        <span class="spark" aria-hidden="true">✳</span>
+        <div class="ballot" aria-hidden="true">
+          <div class="ballot-head"><span>Make it count</span><span>2026</span></div>
+          <div class="ballot-row"><span class="check checked">✓</span><span class="ballot-line"><b>Show up for your community</b><i></i></span></div>
+          <div class="ballot-row"><span class="check"></span><span class="ballot-line"><b>Learn what’s on your ballot</b><i class="short"></i></span></div>
+          <div class="ballot-row"><span class="check"></span><span class="ballot-line"><b>Make a plan to vote</b><i></i></span></div>
+          <div class="ballot-stamp">Your voice belongs here</div>
+        </div>
+        <div class="date-tag">Election Day<strong>November 3</strong></div>
+      </div>
+    </section>
+
+    <section class="wrap date-band" aria-label="Election date">
+      <span class="date-icon" aria-hidden="true">✳</span>
+      <div><span class="date-band-label">MARK YOUR CALENDAR</span><p class="date-band-date">Tuesday, November 3, 2026</p></div>
+      <p class="date-band-note">Registration deadlines and voting options vary by state. Check your local election office for the details that apply to you.</p>
+    </section>
+
+    <section class="wrap section" id="why-vote" aria-labelledby="why-title">
+      <div class="section-heading">
+        <p class="eyebrow">Small action. Real impact.</p>
+        <h2 id="why-title">Why does your vote matter?</h2>
+        <p>Elections are a chance to take part in decisions made on your behalf. Every eligible voter can help shape the conversation.</p>
+      </div>
+      <div class="reasons">
+        <article class="reason">
+          <div class="reason-icon" aria-hidden="true">🏘️</div>
+          <h3>Local choices touch daily life</h3>
+          <p>From schools and roads to public services, local decisions affect the places we live, learn, and work.</p>
+        </article>
+        <article class="reason">
+          <div class="reason-icon" aria-hidden="true">🗣️</div>
+          <h3>Representation starts with you</h3>
+          <p>Voting is one way to tell elected leaders which issues matter to you and your community.</p>
+        </article>
+        <article class="reason">
+          <div class="reason-icon" aria-hidden="true">🌱</div>
+          <h3>Participation builds a stronger civic life</h3>
+          <p>When people take part, they help bring more voices and perspectives into public decisions.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap plan-section" id="make-a-plan" aria-labelledby="plan-title">
+      <div class="plan">
+        <div class="plan-intro">
+          <p class="eyebrow">Four steps to ready</p>
+          <h2 id="plan-title">A little planning goes a long way.</h2>
+          <p>Voting rules and options differ by state. Use official election resources to check the details for where you live.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">01</span>
+            <div><h3>Check your registration</h3><p>Look up your status and find your state’s registration deadlines at <a href="https://www.vote.gov/" target="_blank" rel="noopener noreferrer">Vote.gov ↗</a>.</p></div>
+          </article>
+          <article class="step">
+            <span class="step-number">02</span>
+            <div><h3>Find out what’s on your ballot</h3><p>Visit your <a href="https://www.usa.gov/election-office" target="_blank" rel="noopener noreferrer">state or local election office ↗</a> for official ballot and candidate information.</p></div>
+          </article>
+          <article class="step">
+            <span class="step-number">03</span>
+            <div><h3>Choose how and when to vote</h3><p>Ask your election office about in-person, early, and mail voting options where you live.</p></div>
+          </article>
+          <article class="step">
+            <span class="step-number">04</span>
+            <div><h3>Make your plan—and follow through</h3><p>Note deadlines, where to go, and what you may need. Share the plan with someone you know.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap bottom-cta" aria-label="Get official election information">
+      <div><h2>Ready to find your next step?</h2><p>Start with official, state-specific voting information.</p></div>
+      <a class="button" href="https://www.usa.gov/voting" target="_blank" rel="noopener noreferrer">Explore USA.gov voting info <span class="arrow" aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>Nonpartisan voter information. Election procedures, eligibility, and deadlines vary by state; confirm details with your <a href="https://www.usa.gov/election-office" target="_blank" rel="noopener noreferrer">official election office</a>.</p>
+    <p>Election Day: November 3, 2026</p>
+  </footer>
+</body>
+</html>
